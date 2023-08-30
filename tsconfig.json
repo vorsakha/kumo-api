@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@auth/*": [
+        "src/auth/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@exceptions/*": [
+        "src/exceptions/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+    },
+    "outDir": "dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true
+  },
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": [
+    "index.ts",
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

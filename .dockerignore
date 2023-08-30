@@ -1,0 +1,13 @@
+README.md
+.gitignore
+.env.example
+.editorconfig
+.husky
+Makefile
+Jenkinsfile
+Dockerfile
+docker-compose.yml
+.dockerignore
+node_modules
+dist
+Makefile
