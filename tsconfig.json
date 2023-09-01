@@ -5,9 +5,6 @@
       "@/*": [
         "src/*"
       ],
-      "@auth/*": [
-        "src/auth/*"
-      ],
       "@modules/*": [
         "src/modules/*"
       ],
@@ -20,6 +17,9 @@
       "@config/*": [
         "src/config/*"
       ],
+      "@docs/*": [
+        "src/docs/*"
+      ],
     },
     "outDir": "dist",
     "emitDecoratorMetadata": true,
@@ -30,7 +30,7 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "include": [
     "index.ts",
-    "src/**/*",
+    "src/**/*", "jest.setup.ts",
   ],
   "exclude": [
     "node_modules",
