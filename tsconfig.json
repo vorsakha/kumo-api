@@ -30,7 +30,7 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "include": [
     "index.ts",
-    "src/**/*", "jest.setup.ts",
+    "src/**/*",
   ],
   "exclude": [
     "node_modules",

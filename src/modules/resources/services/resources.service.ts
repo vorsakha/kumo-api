@@ -24,8 +24,6 @@ class ResourcesService implements ResourcesServiceInterface {
     });
 
     return result.data;
-
-    return undefined;
   }
 
   async getTicketSymbols(): Promise<SymbolData[]> {

@@ -7,6 +7,7 @@ USER node
 
 FROM base AS build
 COPY --chown=node:node . .
+RUN yarn install
 RUN yarn build
 
 FROM base AS release

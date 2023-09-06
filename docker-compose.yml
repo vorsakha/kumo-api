@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - database
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     volumes:
