@@ -11,7 +11,8 @@ describe("Resources Routes", () => {
       const response = await request(app).get("/resources/pairs");
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("pairs");
+      expect(response.body).toHaveProperty("data");
+      expect(response.body).toHaveProperty("total");
     });
   });
 });
