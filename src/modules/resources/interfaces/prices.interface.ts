@@ -1,16 +1,16 @@
-interface TimeSeriesData {
-  timestamp: number;
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-  volume: string;
-  timestampEnd: number;
-  quoteVolume: string;
-  tradeCount: number;
-  takerBuyVolume: string;
-  takerBuyQuoteVolume: string;
-  ignore: string;
+import { Intervals } from "@modules/resources/interfaces/resources.interface";
+
+interface TicketModel {
+  open: string[];
+  close: string[];
+  high: string[];
+  low: string[];
 }
 
-export type { TimeSeriesData };
+interface TicketPriceData {
+  [Intervals.SHORT]: TicketModel;
+  [Intervals.MEDIUM]: TicketModel;
+  [Intervals.LONG]: TicketModel;
+}
+
+export type { TicketPriceData, TicketModel };

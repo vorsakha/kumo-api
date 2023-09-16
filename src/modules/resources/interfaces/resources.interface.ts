@@ -14,4 +14,11 @@ interface ResourcesTicketPriceProps {
   limit?: number;
 }
 
+enum Intervals {
+  SHORT = "4h",
+  MEDIUM = "1d",
+  LONG = "1w",
+}
+
 export type { ResourcesPublicInterface, ResourcesTicketPriceProps };
+export { Intervals };

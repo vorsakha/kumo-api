@@ -1,8 +1,12 @@
 import ResourcesService from "@modules/resources/services/resources.service";
+import { Intervals } from "@modules/resources/interfaces/resources.interface";
 
 describe("getTicketSymbols", () => {
   const service = new ResourcesService();
-  const options = { symbol: "BTCUSDT", interval: "4h", limit: 8 };
+  const options = {
+    symbol: "BTCUSDT",
+    interval: [Intervals.SHORT, Intervals.MEDIUM, Intervals.LONG],
+  };
 
   beforeEach(() => {
     jest.setTimeout(10000);
@@ -18,9 +22,14 @@ describe("getTicketSymbols", () => {
 
   describe("getTicketPrice", () => {
     it("should return ticket prices", async () => {
-      const result = await service.getTicketPrice(options);
+      const result = await service.getTicketHistory(
+        options.symbol,
+        options.interval,
+      );
 
-      expect(result.length).toBeGreaterThan(1);
+      expect(result).toHaveProperty("1d");
+      expect(result).toHaveProperty("4h");
+      expect(result).toHaveProperty("1w");
     });
   });
 });

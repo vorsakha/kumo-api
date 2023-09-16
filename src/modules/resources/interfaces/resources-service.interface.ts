@@ -1,14 +1,17 @@
-import { TimeSeriesData } from "./prices.interface";
+import { TicketPriceData } from "@modules/resources/interfaces/prices.interface";
 import {
+  Intervals,
   ResourcesPublicInterface,
-  ResourcesTicketPriceProps,
-} from "./resources.interface";
+} from "@modules/resources/interfaces/resources.interface";
 import { SymbolData } from "./ticket.interface";
 
 interface ResourcesServiceInterface {
   getPublicResources(data: ResourcesPublicInterface): Promise<unknown>;
   getTicketSymbols(): Promise<SymbolData[]>;
-  getTicketPrice(data: ResourcesTicketPriceProps): Promise<TimeSeriesData[][]>;
+  getTicketHistory(
+    pair: string,
+    intervals: Intervals[],
+  ): Promise<TicketPriceData>;
 }
 
 export default ResourcesServiceInterface;

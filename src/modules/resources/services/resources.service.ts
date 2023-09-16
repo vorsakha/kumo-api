@@ -2,13 +2,17 @@ import axios from "axios";
 import querystring from "querystring";
 import env from "@config/sanitized-config";
 
+import {
+  TicketModel,
+  TicketPriceData,
+} from "@modules/resources/interfaces/prices.interface";
 import ResourcesServiceInterface from "../interfaces/resources-service.interface";
 import {
+  Intervals,
   ResourcesPublicInterface,
   ResourcesTicketPriceProps,
 } from "../interfaces/resources.interface";
 import { SymbolData } from "../interfaces/ticket.interface";
-import { TimeSeriesData } from "../interfaces/prices.interface";
 
 class ResourcesService implements ResourcesServiceInterface {
   async getPublicResources({
@@ -32,11 +36,11 @@ class ResourcesService implements ResourcesServiceInterface {
     return data.symbols;
   }
 
-  async getTicketPrice({
+  private async getTicketPrice({
     symbol,
     interval,
-    limit = 8,
-  }: ResourcesTicketPriceProps): Promise<TimeSeriesData[][]> {
+    limit = 160 * 2,
+  }: ResourcesTicketPriceProps): Promise<TicketModel> {
     const resources = await this.getPublicResources({
       path: "/v1/klines",
       options: {
@@ -46,8 +50,32 @@ class ResourcesService implements ResourcesServiceInterface {
       },
     });
 
-    return resources;
+    return resources.map((data: string[][]) => ({
+      open: data[1],
+      high: data[2],
+      low: data[3],
+      close: data[4],
+    }));
   }
+
+  getTicketHistory = async (
+    pair: string,
+    intervals: Intervals[],
+  ): Promise<TicketPriceData> => {
+    const history = {} as TicketPriceData;
+
+    const promises = intervals.map(async (interval) => {
+      const data = await this.getTicketPrice({
+        symbol: pair,
+        interval,
+      });
+      history[interval] = data;
+    });
+
+    await Promise.all(promises);
+
+    return history;
+  };
 }
 
 export default ResourcesService;
