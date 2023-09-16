@@ -50,12 +50,12 @@ class ResourcesService implements ResourcesServiceInterface {
       },
     });
 
-    return resources.map((data: string[][]) => ({
-      open: data[1],
-      high: data[2],
-      low: data[3],
-      close: data[4],
-    }));
+    return {
+      open: resources[1],
+      high: resources[2],
+      low: resources[3],
+      close: resources[4],
+    };
   }
 
   getTicketHistory = async (

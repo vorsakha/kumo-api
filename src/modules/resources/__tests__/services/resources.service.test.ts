@@ -1,7 +1,7 @@
 import ResourcesService from "@modules/resources/services/resources.service";
 import { Intervals } from "@modules/resources/interfaces/resources.interface";
 
-describe("getTicketSymbols", () => {
+describe("ResourcesService", () => {
   const service = new ResourcesService();
   const options = {
     symbol: "BTCUSDT",
@@ -27,9 +27,9 @@ describe("getTicketSymbols", () => {
         options.interval,
       );
 
-      expect(result).toHaveProperty("1d");
-      expect(result).toHaveProperty("4h");
-      expect(result).toHaveProperty("1w");
+      expect(result).toHaveProperty(Intervals.SHORT);
+      expect(result).toHaveProperty(Intervals.MEDIUM);
+      expect(result).toHaveProperty(Intervals.LONG);
     });
   });
 });

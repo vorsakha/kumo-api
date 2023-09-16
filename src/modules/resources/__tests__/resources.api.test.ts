@@ -3,6 +3,7 @@ import request from "supertest";
 
 import server from "@/server";
 import { OK } from "http-status";
+import { Intervals } from "@modules/resources/interfaces/resources.interface";
 
 const app: Express = server.init();
 
@@ -23,9 +24,9 @@ describe("Resources Routes", () => {
 
       expect(response.status).toBe(OK);
 
-      expect(response.body).toHaveProperty("1d");
-      expect(response.body).toHaveProperty("4h");
-      expect(response.body).toHaveProperty("1w");
+      expect(response.body).toHaveProperty(Intervals.SHORT);
+      expect(response.body).toHaveProperty(Intervals.MEDIUM);
+      expect(response.body).toHaveProperty(Intervals.LONG);
     });
   });
 });
