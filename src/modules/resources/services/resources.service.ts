@@ -6,13 +6,13 @@ import {
   TicketModel,
   TicketPriceData,
 } from "@modules/resources/interfaces/prices.interface";
-import ResourcesServiceInterface from "../interfaces/resources-service.interface";
 import {
   Intervals,
   ResourcesPublicInterface,
   ResourcesTicketPriceProps,
-} from "../interfaces/resources.interface";
-import { SymbolData } from "../interfaces/ticket.interface";
+} from "@modules/resources/interfaces/resources.interface";
+import { SymbolData } from "@modules/resources/interfaces/ticket.interface";
+import ResourcesServiceInterface from "@modules/resources/interfaces/resources-service.interface";
 
 class ResourcesService implements ResourcesServiceInterface {
   async getPublicResources({
@@ -50,11 +50,13 @@ class ResourcesService implements ResourcesServiceInterface {
       },
     });
 
+    const [, open, high, low, close] = resources;
+
     return {
-      open: resources[1],
-      high: resources[2],
-      low: resources[3],
-      close: resources[4],
+      open,
+      high,
+      low,
+      close,
     };
   }
 
